@@ -1,24 +1,55 @@
 package com.chow.cleanmvvmhiltmultimodule.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.chow.cleanmvvmhiltmultimodule.R
+import com.chow.cleanmvvmhiltmultimodule.base.BaseActivity
+import com.chow.cleanmvvmhiltmultimodule.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     private lateinit var navController: NavController
+    override val bindingInflater: (LayoutInflater) -> ActivityMainBinding
+        get() = ActivityMainBinding::inflate
+    override val viewModel: MainViewModel by viewModels()
+    private val binding by lazy { binding<ActivityMainBinding>() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.findNavController()
         setupActionBarWithNavController(navController)
+    }
+
+    override fun initData() {
+        TODO("Not yet implemented")
+    }
+
+    override fun bindData() {
+        TODO("Not yet implemented")
+    }
+
+    override fun bindComponent() {
+        TODO("Not yet implemented")
+    }
+
+    override fun bindEvent() {
+        TODO("Not yet implemented")
+    }
+
+    override fun observeData() {
+        TODO("Not yet implemented")
+    }
+
+    override fun setUpNavigation() {
+        TODO("Not yet implemented")
     }
 
     override fun onSupportNavigateUp(): Boolean {
