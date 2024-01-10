@@ -18,7 +18,6 @@ class TestFragment : BaseFragment<FragmentTestBinding, TestViewModel>() {
     override val viewModel: TestViewModel by viewModels()
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentTestBinding
         get() = FragmentTestBinding::inflate
-    private val binding by lazy { binding<FragmentTestBinding>() }
 
 //    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 //        super.onViewCreated(view, savedInstanceState)
@@ -84,7 +83,7 @@ class TestFragment : BaseFragment<FragmentTestBinding, TestViewModel>() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.event.collect {
                     when (it) {
-                        is TestEvent.NavigateToHomeScreen -> TODO()
+                        is TestEvent.NavigateToHomeScreen -> binding.tv
                     }
                 }
             }

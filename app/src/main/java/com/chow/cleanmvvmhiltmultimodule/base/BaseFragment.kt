@@ -9,25 +9,17 @@ import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<VB : ViewBinding, vm : ViewModel> : Fragment() {
-    private var _binding: ViewBinding? = null
+    private var _binding: VB? = null
+    protected val binding get() = _binding!!
     abstract val bindingInflater: ((LayoutInflater, ViewGroup?, Boolean) -> VB)?
     abstract val viewModel: vm
-
-    @Suppress("UNCHECKED_CAST")
-    protected fun <BINDING : ViewBinding> binding(): BINDING {
-        return _binding as BINDING
-    }
-
-    protected fun setBinding(binding: ViewBinding?) {
-        _binding = binding
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        setBinding(bindingInflater?.invoke(inflater, container, false))
+        _binding = bindingInflater?.invoke(inflater, container, false)
         return _binding?.root
     }
 

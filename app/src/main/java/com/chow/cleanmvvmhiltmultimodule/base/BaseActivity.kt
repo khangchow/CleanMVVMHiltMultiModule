@@ -14,14 +14,9 @@ import com.chow.cleanmvvmhiltmultimodule.utils.KeyboardUtils
 abstract class BaseActivity<VB : ViewBinding, vm : ViewModel> : AppCompatActivity() {
     private var startClickTime: Long = 0
     private var isKeyboardShown = false
-    private lateinit var binding: VB
+    protected lateinit var binding: VB
     abstract val bindingInflater: ((LayoutInflater) -> VB)
     abstract val viewModel: vm
-
-    @Suppress("UNCHECKED_CAST")
-    protected fun <BINDING : ViewBinding> binding(): BINDING {
-        return binding as BINDING
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

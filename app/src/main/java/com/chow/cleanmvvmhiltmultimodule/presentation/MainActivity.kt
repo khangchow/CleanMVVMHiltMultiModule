@@ -18,7 +18,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override val bindingInflater: (LayoutInflater) -> ActivityMainBinding
         get() = ActivityMainBinding::inflate
     override val viewModel: MainViewModel by viewModels()
-    private val binding by lazy { binding<ActivityMainBinding>() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +25,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.findNavController()
         setupActionBarWithNavController(navController)
+        binding.navHostFragment
     }
 
     override fun initData() {
